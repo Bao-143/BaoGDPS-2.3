@@ -342,64 +342,6 @@ inline void SetupObjects() {
 			}
 		)->registerMe();
 
-	GameObjectsFactory::createTriggerConfig(
-		UNIQ_ID("openURL"), "openURL.png",
-		[](EffectGameObject* trigger, GJBaseGameLayer* game, int p1, gd::vector<int> const* p2)
-		{
-			auto xd = MDTextArea::create(fmt::format(
-				"[{0}]({0})", trigger->m_particleString.c_str()
-			), { 122,122 });
-			auto item = findFirstChildRecursive<CCMenuItem>(
-				xd, [](void*) { return true; }
-			);
-			if (item) item->activate();
-		},
-		[](EditTriggersPopup* popup, EffectGameObject* trigger, CCArray* objects)
-		{
-			if (auto title = popup->getChildByType<CCLabelBMFont*>(0)) {
-				title->setString("Open URL");
-				title->setAnchorPoint(CCPointMake(0.5f, 0.3f));
-			}
-			if (auto inf = popup->m_buttonMenu->getChildByType<InfoAlertButton*>(0)) {
-				//inf->setVisible(false);
-				inf->m_description = ""
-					"Links have some special protocols!" "\n"
-					"Use <cg>user:{accountID}</c> to link to a GD account;" "\n"
-					"<cg>level:{id}</c> to link to a GD level and" "\n"
-					"<cg>mod:{id}</c> to link to another Geode mod." "\n"
-					"Or a external link from the internet." "\n"
-					"But, the one rule you should follow for safety for everyone," "\n"
-					"<cr>Don't put links to Viruses or Pornhub or anything that is bad.</c>";
-			}
-
-			auto input = TextInput::create(312.f, "", "chatFont.fnt");
-			input->setFilter(" !\"#$ % &'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~");
-			input->getInputNode()->m_allowedChars = " !\"#$ % &'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~";
-			input->setString(trigger->m_particleString.c_str());
-			input->setPositionY(55.000f);
-			input->setCallback(
-				[trigger = Ref(trigger)](const std::string& p0) {
-					trigger->m_particleString = p0.c_str();
-				}
-			);
-			input->getBGSprite()->setContentHeight(40.000f);
-			input->getBGSprite()->setAnchorPoint({ 0.5f, 0.550f });
-			popup->m_buttonMenu->addChild(input);
-		}
-	)->saveString(
-		[](std::string str, GameObject* object, GJBaseGameLayer* level)
-		{
-			str += ",228,";
-			str += ZipUtils::base64URLEncode(object->m_particleString).c_str();
-			return str;
-		}
-	)->objectFromVector(
-		[](GameObject* object, gd::vector<gd::string>& p0, gd::vector<void*>&, void*, bool)
-		{
-			object->m_particleString = ZipUtils::base64URLDecode(p0[228]).c_str();
-			return object;
-		}
-	)->customSetup([](auto a) { a->m_addToNodeContainer = true; })->registerMe();
 
 	GameObjectsFactory::createTriggerConfig(
 		UNIQ_ID("plr-normal-mode"), "plr-normal-mode.png",
