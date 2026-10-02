@@ -1,6 +1,4 @@
-### 2.3 Features for GDPS - A fork of Remina GDPS mod but with more features to use for your GDPS
-This GDPS is full of 2.3 features by fans and they are ported to this GDPS coming soon!
-You can create anything in part of game engineering.
+### 2.3 Features for BaoGDPS - A fork of Arrhythmiagamer23 fork of Remina GDPS mod
 
 This mod from Remina GDPS was modified and simplified to match the looks of the Geometry Dash Game.
 
@@ -14,6 +12,7 @@ GDL7u7: New decoration Textures for objects.<br>
 BootDark: Final Dash Orb Object Sprites.<br>
 OmegaFalcon: Spider Dash Orb Sprite.<br>
 iArtie: Random Portals Mod stuff.<br>
+Arrhythmiagamer23: Owner of the fork of this
 
 
 ## Why is it not in the geode index?
