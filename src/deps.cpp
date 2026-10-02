@@ -1,7 +1,7 @@
 #include <Geode/Geode.hpp>
 using namespace geode::prelude;
 
-#include <lib/httplib.h>
+#include <.hpp>
 
 #include <Geode/modify/CCString.hpp>
 class $modify(CCStringNilCallFix, CCString) {
