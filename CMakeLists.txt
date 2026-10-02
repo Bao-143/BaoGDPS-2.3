@@ -13,7 +13,7 @@ file( DOWNLOAD "https://github.com/lil2kki/geode-download-dependency-cmake/blob/
     ${CMAKE_CURRENT_BINARY_DIR}/geode-download-dependency.cmake)
 include(${CMAKE_CURRENT_BINARY_DIR}/geode-download-dependency.cmake)
 
-download_dependency_mod(Arrhythmiagamer23/geode-game-objects-factory roadhogstudios.game-objects-factory FALSE)
+download_dependency_mod(Arrhythmiagamer23/geode-game-objects-factory roadhogstudios.game-objects-factory)
 
 file(GLOB_RECURSE SOURCES CONFIGURE_DEPENDS src/*.cpp)
 
@@ -42,4 +42,4 @@ endif()
 
 add_subdirectory($ENV{GEODE_SDK} ${CMAKE_CURRENT_BINARY_DIR}/geode)
 
-setup_geode_mod(${PROJECT_NAME})
+setup_geode_mod(${PROJECT_NAME} EXTERNALS roadhogstudios.game-objects-factory)
