@@ -513,66 +513,61 @@ inline void SetupObjects() {
         GameObjectsFactory::createSpeedPortalConfig(
             UNIQ_ID("QuintupleSpeed"),
             "QuintupleSpeed.png",
-            [](EnhancedGameObject* object, PlayerObject* plr) 		
-		{
-			if (!game) return;
-			if (auto a = game->m_player1) a->m_playerSpeed = 2.0f;
-			if (auto a = game->m_player2) a->m_playerSpeed = 2.0f;
-		}
-        )->customSetup(
+			[](EnhancedGameObject* object, PlayerObject* plr) {
+				if (!plr) return;
+				plr->m_playerSpeed = 2.0f;
+			}
+		)->customSetup(
 			[](GameObject* a) {
 				if (a) a->m_addToNodeContainer = true;
 			}
 		)
-    );
+	);
 
-	GameObjectsFactory::registerGameObject(
-        GameObjectsFactory::createSpeedPortalConfig(
-            UNIQ_ID("QuarterSpeed"),
-            "QuarterSpeed.png",
-            [](EnhancedGameObject* object, PlayerObject* plr) 		
-		{
-			if (!game) return;
-			if (auto a = game->m_player1) a->m_playerSpeed = 1.6f;
-			if (auto a = game->m_player2) a->m_playerSpeed = 1.6f;
-		}
-        )->customSetup(
-			[](GameObject* a) {
-				if (a) a->m_addToNodeContainer = true;
-			}
-		)
-    );
+GameObjectsFactory::registerGameObject(
+    GameObjectsFactory::createSpeedPortalConfig(
+        UNIQ_ID("QuarterSpeed"),
+        "QuarterSpeed.png",
+        [](EnhancedGameObject* object, PlayerObject* plr) {
+            if (!plr) return;
+            plr->m_playerSpeed = 0.5f;
+        }
+    )->customSetup(
+        [](GameObject* a) {
+            if (a) a->m_addToNodeContainer = true;
+        }
+    )
+);
 
 	GameObjectsFactory::registerGameObject(
         GameObjectsFactory::createSpeedPortalConfig(
             UNIQ_ID("SixTimesSpeed"),
             "6xSpeed.png",
-            [](EnhancedGameObject* object, PlayerObject* plr) {
-                plr->m_playerSpeed = 2.4f; log::info("activated by player, {}, {}", object, plr);
-            }
-        )->customSetup(
+			[](EnhancedGameObject* object, PlayerObject* plr) {
+				if (!plr) return;
+				plr->m_playerSpeed = 2.4f;
+			}
+		)->customSetup(
 			[](GameObject* a) {
 				if (a) a->m_addToNodeContainer = true;
 			}
 		)
-    );
+	);
 
 	GameObjectsFactory::registerGameObject(
         GameObjectsFactory::createSpeedPortalConfig(
             UNIQ_ID("PauseSpeed"),
             "PauseSpeed.png",
-            [](EnhancedGameObject* object, PlayerObject* plr) 
-		{
-			if (!game) return;
-			if (auto a = game->m_player1) a->m_playerSpeed = 0.0f;
-			if (auto a = game->m_player2) a->m_playerSpeed = 0.0f;
-		}
-        )->customSetup(
+			[](EnhancedGameObject* object, PlayerObject* plr) {
+				if (!plr) return;
+				plr->m_playerSpeed = 0.0f;
+			}
+		)->customSetup(
 			[](GameObject* a) {
 				if (a) a->m_addToNodeContainer = true;
 			}
 		)
-    );
+	);
 
 	GameObjectsFactory::registerGameObject(
         GameObjectsFactory::createGravityPortalConfig(
