@@ -1,5 +1,7 @@
 ### 2.3 Features for BaoGDPS - A fork of Arrhythmiagamer23 fork of Remina GDPS mod
 
+# There are no vibe-coded
+
 This mod from Remina GDPS was modified and simplified to match the looks of the Geometry Dash Game.
 
 This mod also requires the Forked .geode mod of Game Objects factory that supports pads, dash orbs, speed portals, gamemode portals and more.<br>
