@@ -377,20 +377,6 @@ inline void SetupObjects() {
 
 	GameObjectsFactory::registerGameObject(
         GameObjectsFactory::createRingConfig(
-            UNIQ_ID("viceversa-spiderring"),
-            "viceversa_spiderRing.png",
-            [](EnhancedGameObject* object, PlayerObject* plr) {
-                plr->spiderTestJump(true); log::info("activated by player, {}, {}", object, plr);
-            }
-        )->customSetup(
-			[](GameObject* a) {
-				if (a) a->m_addToNodeContainer = true;
-			}
-		)
-    );
-	
-	GameObjectsFactory::registerGameObject(
-        GameObjectsFactory::createRingConfig(
             UNIQ_ID("deathrring"),
             "deathRing.png",
             [](EnhancedGameObject* object, PlayerObject* plr) {
@@ -446,7 +432,7 @@ inline void SetupObjects() {
     );
 
 	GameObjectsFactory::registerGameObject(
-        GameObjectsFactory::createSpeedPortalConfig(
+        GameObjectsFactory::createGravityPortalConfig(
             UNIQ_ID("QuintupleSpeed"),
             "QuintupleSpeed.png",
 			[](EnhancedGameObject* object, PlayerObject* plr) {
@@ -460,7 +446,7 @@ inline void SetupObjects() {
 	);
 
 GameObjectsFactory::registerGameObject(
-    GameObjectsFactory::createGamemodePortalConfig(
+    GameObjectsFactory::createGravityPortalConfig(
         UNIQ_ID("QuarterSpeed"),
         "QuarterSpeed.png",
         [](EnhancedGameObject* object, PlayerObject* plr) {
@@ -474,7 +460,7 @@ GameObjectsFactory::registerGameObject(
 );
 
 	GameObjectsFactory::registerGameObject(
-        GameObjectsFactory::createSpeedPortalConfig(
+        GameObjectsFactory::createGravityPortalConfig(
             UNIQ_ID("SixTimesSpeed"),
             "6xSpeed.png",
 			[](EnhancedGameObject* object, PlayerObject* plr) {
@@ -488,7 +474,7 @@ GameObjectsFactory::registerGameObject(
 	);
 
 	GameObjectsFactory::registerGameObject(
-        GameObjectsFactory::createSpeedPortalConfig(
+        GameObjectsFactory::createGravityPortalConfig(
             UNIQ_ID("PauseSpeed"),
             "PauseSpeed.png",
 			[](EnhancedGameObject* object, PlayerObject* plr) {
