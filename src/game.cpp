@@ -464,8 +464,7 @@ GameObjectsFactory::registerGameObject(
         UNIQ_ID("QuarterSpeed"),
         "QuarterSpeed.png",
         [](EnhancedGameObject* object, PlayerObject* plr) {
-			if (auto a = game->m_player1) a->m_playerSpeed = 0.5f;
-			if (auto a = game->m_player2) a->m_playerSpeed = 0.5f;
+            plr->m_playerSpeed = 0.5f; log::info("activated by player, {}, {}", object, plr);
         }
     )->customSetup(
         [](GameObject* a) {
