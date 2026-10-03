@@ -390,25 +390,11 @@ inline void SetupObjects() {
     );
 
 	GameObjectsFactory::registerGameObject(
-        GameObjectsFactory::createRingConfig(
-            UNIQ_ID("altGravRing"),
-            "altGravRing.png",
+        GameObjectsFactory::createPadConfig(
+            UNIQ_ID("GravJumpPad"),
+            "GreenPad.png",
             [](EnhancedGameObject* object, PlayerObject* plr) {
                 plr->flipGravity(!plr->m_isUpsideDown, true); log::info("activated by player, {}, {}", object, plr);
-            }
-        )->customSetup(
-			[](GameObject* a) {
-				if (a) a->m_addToNodeContainer = true;
-			}
-		)
-    );
-
-	GameObjectsFactory::registerGameObject(
-        GameObjectsFactory::createRingConfig(
-            UNIQ_ID("OrangeRing"),
-            "OrangeRing.png",
-            [](EnhancedGameObject* object, PlayerObject* plr) {
-                plr->pushPlayer(13); log::info("activated by player, {}, {}", object, plr);
             }
         )->customSetup(
 			[](GameObject* a) {
@@ -419,10 +405,10 @@ inline void SetupObjects() {
 
 	GameObjectsFactory::registerGameObject(
         GameObjectsFactory::createPadConfig(
-            UNIQ_ID("GravJumpPad"),
-            "GreenPad.png",
+            UNIQ_ID("DropPad"),
+            "DropPad.png",
             [](EnhancedGameObject* object, PlayerObject* plr) {
-                plr->flipGravity(!plr->m_isUpsideDown, true); log::info("activated by player, {}, {}", object, plr);
+                plr->boostPlayer(-10); log::info("activated by player, {}, {}", object, plr);
             }
         )->customSetup(
 			[](GameObject* a) {
