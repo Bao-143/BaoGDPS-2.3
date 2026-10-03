@@ -460,7 +460,7 @@ inline void SetupObjects() {
 	);
 
 GameObjectsFactory::registerGameObject(
-    GameObjectsFactory::createSpeedPortalConfig(
+    GameObjectsFactory::createGamemodePortalConfig(
         UNIQ_ID("QuarterSpeed"),
         "QuarterSpeed.png",
         [](EnhancedGameObject* object, PlayerObject* plr) {
