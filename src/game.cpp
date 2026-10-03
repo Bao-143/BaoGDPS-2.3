@@ -366,62 +366,12 @@ inline void SetupObjects() {
 	)->customSetup([](auto a) { a->m_addToNodeContainer = true; })->registerMe();
 
 	GameObjectsFactory::createTriggerConfig(
-		UNIQ_ID("plr-speed2"), "plr-speed-normal.png",
-		[](EffectGameObject* trigger, GJBaseGameLayer* game, int p1, gd::vector<int> const* p2)
-		{
-			if (!game) return;
-			if (auto a = game->m_player1) a->m_playerSpeed = 0.9f;
-			if (auto a = game->m_player2) a->m_playerSpeed = 0.9f;
-		}
-	)->customSetup([](auto a) { a->m_addToNodeContainer = true; })->registerMe();
-
-	GameObjectsFactory::createTriggerConfig(
-		UNIQ_ID("plr-speed-slow"), "plr-speed-slow.png",
-		[](EffectGameObject* trigger, GJBaseGameLayer* game, int p1, gd::vector<int> const* p2)
-		{
-			if (!game) return;
-			if (auto a = game->m_player1) a->m_playerSpeed = 0.7f;
-			if (auto a = game->m_player2) a->m_playerSpeed = 0.7f;
-		}
-	)->customSetup([](auto a) { a->m_addToNodeContainer = true; })->registerMe();
-
-	GameObjectsFactory::createTriggerConfig(
 		UNIQ_ID("plr-speed-superslow"), "plr-speed-superslow.png",
 		[](EffectGameObject* trigger, GJBaseGameLayer* game, int p1, gd::vector<int> const* p2)
 		{
 			if (!game) return;
 			if (auto a = game->m_player1) a->m_playerSpeed = 0.5f;
 			if (auto a = game->m_player2) a->m_playerSpeed = 0.5f;
-		}
-	)->customSetup([](auto a) { a->m_addToNodeContainer = true; })->registerMe();
-
-	GameObjectsFactory::createTriggerConfig(
-		UNIQ_ID("plr-speed-double"), "plr-speed-double.png",
-		[](EffectGameObject* trigger, GJBaseGameLayer* game, int p1, gd::vector<int> const* p2)
-		{
-			if (!game) return;
-			if (auto a = game->m_player1) a->m_playerSpeed = 1.1f;
-			if (auto a = game->m_player2) a->m_playerSpeed = 1.1f;
-		}
-	)->customSetup([](auto a) { a->m_addToNodeContainer = true; })->registerMe();
-
-	GameObjectsFactory::createTriggerConfig(
-		UNIQ_ID("plr-speed-triple"), "plr-speed-triple.png",
-		[](EffectGameObject* trigger, GJBaseGameLayer* game, int p1, gd::vector<int> const* p2)
-		{
-			if (!game) return;
-			if (auto a = game->m_player1) a->m_playerSpeed = 1.3f;
-			if (auto a = game->m_player2) a->m_playerSpeed = 1.3f;
-		}
-	)->customSetup([](auto a) { a->m_addToNodeContainer = true; })->registerMe();
-
-	GameObjectsFactory::createTriggerConfig(
-		UNIQ_ID("DashTrigger"), "dashTrigger.png",
-		[](EffectGameObject* trigger, GJBaseGameLayer* game, int p1, gd::vector<int> const* p2)
-		{
-			if (!game) return;
-			if (auto a = game->m_player1) a->m_isDashing = true;
-			if (auto a = game->m_player2) a->m_isDashing = true;
 		}
 	)->customSetup([](auto a) { a->m_addToNodeContainer = true; })->registerMe();
 
@@ -438,21 +388,7 @@ inline void SetupObjects() {
 			}
 		)
     );
-
-	GameObjectsFactory::registerGameObject(
-        GameObjectsFactory::createRingConfig(
-            UNIQ_ID("minirring"),
-            "miniRing.png",
-            [](EnhancedGameObject* object, PlayerObject* plr) {
-                plr->togglePlayerScale(plr->m_vehicleSize != 0.6f, true); log::info("activated by player, {}, {}", object, plr);
-            }
-        )->customSetup(
-			[](GameObject* a) {
-				if (a) a->m_addToNodeContainer = true;
-			}
-		)
-    );
-
+	
 	GameObjectsFactory::registerGameObject(
         GameObjectsFactory::createRingConfig(
             UNIQ_ID("deathrring"),
@@ -514,8 +450,7 @@ inline void SetupObjects() {
             UNIQ_ID("QuintupleSpeed"),
             "QuintupleSpeed.png",
 			[](EnhancedGameObject* object, PlayerObject* plr) {
-				if (!plr) return;
-				plr->m_playerSpeed = 2.0f;
+               plr->m_playerSpeed = 2.0f; log::info("activated by player, {}, {}", object, plr);
 			}
 		)->customSetup(
 			[](GameObject* a) {
@@ -529,8 +464,7 @@ GameObjectsFactory::registerGameObject(
         UNIQ_ID("QuarterSpeed"),
         "QuarterSpeed.png",
         [](EnhancedGameObject* object, PlayerObject* plr) {
-            if (!plr) return;
-            plr->m_playerSpeed = 0.5f;
+            plr->m_playerSpeed = 0.5f; log::info("activated by player, {}, {}", object, plr);
         }
     )->customSetup(
         [](GameObject* a) {
@@ -544,8 +478,7 @@ GameObjectsFactory::registerGameObject(
             UNIQ_ID("SixTimesSpeed"),
             "6xSpeed.png",
 			[](EnhancedGameObject* object, PlayerObject* plr) {
-				if (!plr) return;
-				plr->m_playerSpeed = 2.4f;
+               plr->m_playerSpeed = 2.4f; log::info("activated by player, {}, {}", object, plr);
 			}
 		)->customSetup(
 			[](GameObject* a) {
@@ -559,8 +492,7 @@ GameObjectsFactory::registerGameObject(
             UNIQ_ID("PauseSpeed"),
             "PauseSpeed.png",
 			[](EnhancedGameObject* object, PlayerObject* plr) {
-				if (!plr) return;
-				plr->m_playerSpeed = 0.0f;
+               plr->m_playerSpeed = 0.0f; log::info("activated by player, {}, {}", object, plr);
 			}
 		)->customSetup(
 			[](GameObject* a) {
