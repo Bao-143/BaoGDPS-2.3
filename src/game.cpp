@@ -437,7 +437,7 @@ inline void SetupObjects() {
             "QuintupleSpeed.png",
 			[](EnhancedGameObject* object, PlayerObject* plr) {
                plr->m_playerSpeed = 2.0f; log::info("activated by player, {}, {}", object, plr);
-				plr->flipGravity; log::info("activated by player, {}, {}", object, plr);
+            	plr->flipGravity(!plr->m_isUpsideDown, true); log::info("activated by player, {}, {}", object, plr);
 			}
 		)->customSetup(
 			[](GameObject* a) {
@@ -452,7 +452,7 @@ GameObjectsFactory::registerGameObject(
         "QuarterSpeed.png",
         [](EnhancedGameObject* object, PlayerObject* plr) {
             plr->m_playerSpeed = 0.5f; log::info("activated by player, {}, {}", object, plr);
-			plr->flipGravity; log::info("activated by player, {}, {}", object, plr);
+            plr->flipGravity(!plr->m_isUpsideDown, true); log::info("activated by player, {}, {}", object, plr);
         }
     )->customSetup(
         [](GameObject* a) {
@@ -467,7 +467,7 @@ GameObjectsFactory::registerGameObject(
             "6xSpeed.png",
 			[](EnhancedGameObject* object, PlayerObject* plr) {
                plr->m_playerSpeed = 2.4f; log::info("activated by player, {}, {}", object, plr);
-				plr->flipGravity; log::info("activated by player, {}, {}", object, plr);
+                plr->flipGravity(!plr->m_isUpsideDown, true); log::info("activated by player, {}, {}", object, plr);
 			}
 		)->customSetup(
 			[](GameObject* a) {
@@ -482,7 +482,7 @@ GameObjectsFactory::registerGameObject(
             "PauseSpeed.png",
 			[](EnhancedGameObject* object, PlayerObject* plr) {
                plr->m_playerSpeed = 0.0f; log::info("activated by player, {}, {}", object, plr);
-				plr->flipGravity; log::info("activated by player, {}, {}", object, plr);
+                plr->flipGravity(!plr->m_isUpsideDown, true); log::info("activated by player, {}, {}", object, plr);
 			}
 		)->customSetup(
 			[](GameObject* a) {
