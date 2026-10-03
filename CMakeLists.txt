@@ -1,5 +1,7 @@
 cmake_minimum_required(VERSION 3.21)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+cmake_minimum_required(VERSION 3.21)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 if ("${CMAKE_SYSTEM_NAME}" STREQUAL "iOS" OR IOS)
     set(CMAKE_OSX_ARCHITECTURES "arm64")
 else()
@@ -43,3 +45,11 @@ endif()
 add_subdirectory($ENV{GEODE_SDK} ${CMAKE_CURRENT_BINARY_DIR}/geode)
 
 setup_geode_mod(${PROJECT_NAME})
+PLATFORM "Android64")
+else()
+    message(STATUS "Found Geode: $ENV{GEODE_SDK}")
+endif()
+
+add_subdirectory($ENV{GEODE_SDK} ${CMAKE_CURRENT_BINARY_DIR}/geode)
+
+setup_geode_mod(${PROJECT_NAME} EXTERNALS roadhogstudios.game-objects-factory)
