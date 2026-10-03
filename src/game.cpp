@@ -317,32 +317,6 @@ inline void SetupObjects() {
 			}
 		)->registerMe();
 
-	GameObjectsFactory::createTriggerConfig(UNIQ_ID("plr-tw-rot"), "plr-tw-rot.png")
-		->refID(1935)->insertIndex((12 * 5) + 5)->triggerObject(
-			[](EffectGameObject* ob, GJBaseGameLayer* g, int, gd::vector<int> const*) {
-				auto id = ob->m_objectID;
-				ob->m_objectID = 1935;
-				auto sVal = string::split(ob->getSaveString(g), ",120,")[1];
-				ob->m_objectID = id;
-				auto a = utils::numFromString<float>(sVal).unwrapOr(1.0f);
-				for (auto p : { g->m_player1, g->m_player2 }) {
-					if (p) p->m_customScaleX = a;
-				}
-			}
-		)->saveString(
-			[](std::string str, GameObject* ob, GJBaseGameLayer* game) {
-				auto id = ob->m_objectID;
-				ob->m_objectID = 1935;
-				str = ob->getSaveString(game);
-				ob->m_objectID = id;
-				log::debug("{}", str);
-				str = string::replace(str, "1,1935", fmt::format("1,{}", id)).c_str();
-				//120
-				return str;
-			}
-		)->registerMe();
-
-
 	GameObjectsFactory::createTriggerConfig(
 		UNIQ_ID("plr-normal-mode"), "plr-normal-mode.png",
 		[](EffectGameObject* trigger, GJBaseGameLayer* game, int p1, gd::vector<int> const* p2)
@@ -362,16 +336,6 @@ inline void SetupObjects() {
 			if (auto a = game->m_uiLayer) a->togglePlatformerMode(true);
 			if (auto a = game->m_player1) a->m_isPlatformer = true;
 			if (auto a = game->m_player2) a->m_isPlatformer = true;
-		}
-	)->customSetup([](auto a) { a->m_addToNodeContainer = true; })->registerMe();
-
-	GameObjectsFactory::createTriggerConfig(
-		UNIQ_ID("plr-speed-superslow"), "plr-speed-superslow.png",
-		[](EffectGameObject* trigger, GJBaseGameLayer* game, int p1, gd::vector<int> const* p2)
-		{
-			if (!game) return;
-			if (auto a = game->m_player1) a->m_playerSpeed = 0.5f;
-			if (auto a = game->m_player2) a->m_playerSpeed = 0.5f;
 		}
 	)->customSetup([](auto a) { a->m_addToNodeContainer = true; })->registerMe();
 
@@ -395,20 +359,6 @@ inline void SetupObjects() {
             "GreenPad.png",
             [](EnhancedGameObject* object, PlayerObject* plr) {
                 plr->flipGravity(!plr->m_isUpsideDown, true); log::info("activated by player, {}, {}", object, plr);
-            }
-        )->customSetup(
-			[](GameObject* a) {
-				if (a) a->m_addToNodeContainer = true;
-			}
-		)
-    );
-
-	GameObjectsFactory::registerGameObject(
-        GameObjectsFactory::createPadConfig(
-            UNIQ_ID("DropPad"),
-            "DropPad.png",
-            [](EnhancedGameObject* object, PlayerObject* plr) {
-                plr->boostPlayer(-10); log::info("activated by player, {}, {}", object, plr);
             }
         )->customSetup(
 			[](GameObject* a) {
