@@ -355,6 +355,21 @@ inline void SetupObjects() {
     );
 
 	GameObjectsFactory::registerGameObject(
+    GameObjectsFactory::createPadConfig(
+        UNIQ_ID("DropPad"),
+        "DropPad.png",
+        [](EnhancedGameObject* object, PlayerObject* plr) {
+            constexpr double SLAM_SPEED = 16.0; log::info("activated by player, {}, {}", object, plr);
+            plr->m_yVelocity = -SLAM_SPEED; log::info("activated by player, {}, {}", object, plr);
+        }
+    )->customSetup(
+        [](GameObject* a) {
+            if (a) a->m_addToNodeContainer = true;
+        }
+    )
+);
+
+	GameObjectsFactory::registerGameObject(
         GameObjectsFactory::createRingConfig(
             UNIQ_ID("deathrring"),
             "deathRing.png",
