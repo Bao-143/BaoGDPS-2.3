@@ -388,7 +388,7 @@ inline void SetupObjects() {
             UNIQ_ID("OrangePad"),
             "OrangePad.png",
             [](EnhancedGameObject* object, PlayerObject* plr) {
-                plr->boostPlayer(20); log::info("activated by player, {}, {}", object, plr);
+                plr->pushPlayer(20); log::info("activated by player, {}, {}", object, plr);
             }
         )->customSetup(
 			[](GameObject* a) {
