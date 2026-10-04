@@ -266,7 +266,7 @@ inline void SetupObjects() {
 					"<cg>mod:{id}</c> to link to another Geode mod." "\n"
 					"Or a external link from the internet." "\n"
 					"But, the one rule you should follow for safety for everyone," "\n"
-					"<cr>Don't put links that have virus, phub, gambling,...</c>";
+					"<cr>Don't put links that have virus, phub, gambling,...</c>"; "\n"
 			}
 
 			auto input = TextInput::create(312.f, "", "chatFont.fnt");
@@ -298,6 +298,8 @@ inline void SetupObjects() {
 		}
 	)->customSetup([](auto a) { a->m_addToNodeContainer = true; })->registerMe();
 
+
+	
 	GameObjectsFactory::createTriggerConfig(
 		UNIQ_ID("plr-normal-mode"), "plr-normal-mode.png",
 		[](EffectGameObject* trigger, GJBaseGameLayer* game, int p1, gd::vector<int> const* p2)
