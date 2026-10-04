@@ -221,24 +221,7 @@ inline void SetupObjects() {
 				fmt::format("{},", svcondtrigger->m_objectID).c_str()
 			).c_str();
 			object->m_objectID = svcondtrigger->m_objectID;
-			if (auto data = typeinfo_cast<CCNode*>(object->getUserObject("data"_spr))) {
-				str += ",228,";
-				str += ZipUtils::base64URLEncode(data->getID().c_str()).c_str();
-			}
-			return gd::string(str.c_str());
-		}
-	)->objectFromVector(
-		[](GameObject* object, gd::vector<gd::string>& p0, gd::vector<void*>&, void*, bool)
-		{
-			if (!object) return object;
-			auto data = typeinfo_cast<CCNode*>(object->getUserObject("data"_spr));
-			if (data) data->setID(ZipUtils::base64URLDecode(p0[228].c_str()).c_str());
-			return object;
-		}
-	);
-	svcondtrigger->registerMe();
-
-	
+			if (auto data = typeinfo_cast<CCNode*>(object
 	GameObjectsFactory::createTriggerConfig(
 		UNIQ_ID("openURL"), "openURL.png",
 		[](EffectGameObject* trigger, GJBaseGameLayer* game, int p1, gd::vector<int> const* p2)
@@ -266,7 +249,7 @@ inline void SetupObjects() {
 					"<cg>mod:{id}</c> to link to another Geode mod." "\n"
 					"Or a external link from the internet." "\n"
 					"But, the one rule you should follow for safety for everyone," "\n"
-					"<cr>Don't put links that have virus, phub, gambling,...</c>"; "\n"
+					"<cr>Don't put links to Viruses or Pornhub or anything that is bad.</c>";
 			}
 
 			auto input = TextInput::create(312.f, "", "chatFont.fnt");
@@ -299,7 +282,6 @@ inline void SetupObjects() {
 	)->customSetup([](auto a) { a->m_addToNodeContainer = true; })->registerMe();
 
 
-	
 	GameObjectsFactory::createTriggerConfig(
 		UNIQ_ID("plr-normal-mode"), "plr-normal-mode.png",
 		[](EffectGameObject* trigger, GJBaseGameLayer* game, int p1, gd::vector<int> const* p2)
@@ -479,7 +461,8 @@ inline void SetupObjects() {
 				if (a) a->m_addToNodeContainer = true;
 			}
 		)
-
+);
+			
 	GameObjectsFactory::registerGameObject(
         GameObjectsFactory::createGravityPortalConfig(
             UNIQ_ID("QuintupleSpeed"),
