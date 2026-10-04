@@ -345,7 +345,7 @@ inline void SetupObjects() {
             UNIQ_ID("OrangeRing"),
             "OrangeRing.png",
             [](EnhancedGameObject* object, PlayerObject* plr) {
-                plr->boostPlayer(13); log::info("activated by player, {}, {}", object, plr);
+                plr->boostPlayer(30); log::info("activated by player, {}, {}", object, plr);
             }
         )->customSetup(
 			[](GameObject* a) {
@@ -385,10 +385,10 @@ inline void SetupObjects() {
 	
 	GameObjectsFactory::registerGameObject(
         GameObjectsFactory::createPadConfig(
-            UNIQ_ID("DropPad"),
-            "DropPad.png",
+            UNIQ_ID("OrangePad"),
+            "OrangePad.png",
             [](EnhancedGameObject* object, PlayerObject* plr) {
-                plr->boostPlayer(0); log::info("activated by player, {}, {}", object, plr);
+                plr->boostPlayer(30); log::info("activated by player, {}, {}", object, plr);
             }
         )->customSetup(
 			[](GameObject* a) {
@@ -471,6 +471,9 @@ GameObjectsFactory::registerGameObject(
 			}
 		)
     );
+
+	GameObjectsFactory::createDecorationObjectConfig(UNIQ_ID("circle_corner"), "CircleCorner.png")->customSetup([](auto a) { a->m_addToNodeContainer = true; })->registerMe();
+	
 
 	GameObjectsFactory::createTriggerConfig(
 		UNIQ_ID("custom-shader"), "edit_eShaderCustomBtn_001.png",
