@@ -345,7 +345,7 @@ inline void SetupObjects() {
             UNIQ_ID("OrangeRing"),
             "OrangeRing.png",
             [](EnhancedGameObject* object, PlayerObject* plr) {
-                plr->boostPlayer(30); log::info("activated by player, {}, {}", object, plr);
+                plr->boostPlayer(20); log::info("activated by player, {}, {}", object, plr);
             }
         )->customSetup(
 			[](GameObject* a) {
@@ -388,7 +388,7 @@ inline void SetupObjects() {
             UNIQ_ID("OrangePad"),
             "OrangePad.png",
             [](EnhancedGameObject* object, PlayerObject* plr) {
-                plr->boostPlayer(30); log::info("activated by player, {}, {}", object, plr);
+                plr->updateJump(20); log::info("activated by player, {}, {}", object, plr);
             }
         )->customSetup(
 			[](GameObject* a) {
