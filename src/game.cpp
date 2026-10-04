@@ -384,11 +384,11 @@ inline void SetupObjects() {
 
 	
 	GameObjectsFactory::registerGameObject(
-        GameObjectsFactory::createGravityPortalConfig(
+        GameObjectsFactory::createPadConfig(
             UNIQ_ID("OrangePad"),
             "OrangePad.png",
             [](EnhancedGameObject* object, PlayerObject* plr) {
-                plr->boostPlayer(20); log::info("activated by player, {}, {}", object, plr);
+                plr->boostPlayer(20)(!plr->m_isActivedByPlayer, true); log::info("activated by player, {}, {}", object, plr);
             }
         )->customSetup(
 			[](GameObject* a) {
