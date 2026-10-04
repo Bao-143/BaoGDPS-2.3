@@ -8,8 +8,8 @@ using namespace geode::prelude;
 
 #include <regex>
 
-#include <roadhogstudio.game-objects-factory/include/main.hpp>
-#include <roadhogstudio.game-objects-factory/include/impl.hpp>
+#include <roadhogstudios.game-objects-factory/include/main.hpp>
+#include <roadhogstudios.game-objects-factory/include/impl.hpp>
 
 void SetupObjects();
 $on_mod(Loaded) { SetupObjects(); }
