@@ -25,6 +25,4 @@ as it could lead to tons of problems for users
 without the mod and also potentially the server. 
 It's a good idea though, I will say.
 ```
-You can experiment and try it to make something cool, but don't upload any levels unless you have your own GDPS you made to add and be able to create with it only in the GDPS you own.
-
-Feel free to use it on your own GDPS.
+## I hate pads so no pads except Green Pad
