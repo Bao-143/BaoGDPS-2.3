@@ -384,7 +384,7 @@ inline void SetupObjects() {
 
 	
 	GameObjectsFactory::registerGameObject(
-        GameObjectsFactory::createRingConfig(
+        GameObjectsFactory::createPadConfig(
             UNIQ_ID("OrangePad"),
             "OrangePad.png",
             [](EnhancedGameObject* object, PlayerObject* plr) {
