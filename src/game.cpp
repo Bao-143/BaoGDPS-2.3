@@ -339,6 +339,21 @@ inline void SetupObjects() {
 		}
 	)->customSetup([](auto a) { a->m_addToNodeContainer = true; })->registerMe();
 
+	
+	GameObjectsFactory::registerGameObject(
+        GameObjectsFactory::createRingConfig(
+            UNIQ_ID("OrangeRing"),
+            "OrangeRing.png",
+            [](EnhancedGameObject* object, PlayerObject* plr) {
+                plr->boostPlayer(13); log::info("activated by player, {}, {}", object, plr);
+            }
+        )->customSetup(
+			[](GameObject* a) {
+				if (a) a->m_addToNodeContainer = true;
+			}
+		)
+    );
+
 	GameObjectsFactory::registerGameObject(
         GameObjectsFactory::createRingConfig(
             UNIQ_ID("deathrring"),
@@ -359,6 +374,21 @@ inline void SetupObjects() {
             "GreenPad.png",
             [](EnhancedGameObject* object, PlayerObject* plr) {
                 plr->flipGravity(!plr->m_isUpsideDown, true); log::info("activated by player, {}, {}", object, plr);
+            }
+        )->customSetup(
+			[](GameObject* a) {
+				if (a) a->m_addToNodeContainer = true;
+			}
+		)
+    );
+
+	
+	GameObjectsFactory::registerGameObject(
+        GameObjectsFactory::createPadConfig(
+            UNIQ_ID("DropPad"),
+            "DropPad.png",
+            [](EnhancedGameObject* object, PlayerObject* plr) {
+                plr->boostPlayer(0); log::info("activated by player, {}, {}", object, plr);
             }
         )->customSetup(
 			[](GameObject* a) {
