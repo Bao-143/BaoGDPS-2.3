@@ -389,7 +389,6 @@ inline void SetupObjects() {
             "DropPad.png",
             [](EnhancedGameObject* object, PlayerObject* plr) {
                 plr->pushDown(); log::info("activated by player, {}, {}", object, plr);
-				plr->flipGravity(!plr->m_isUpsideDown, true); log::info("activated by player, {}, {}", object, plr);
             }
         )->customSetup(
 			[](GameObject* a) {
