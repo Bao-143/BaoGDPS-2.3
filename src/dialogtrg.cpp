@@ -1,7 +1,7 @@
 #include <giveitaname.hpp>
 
-#include <roadhogstudios.game-objects-factory/include/main.hpp>
-#include <roadhogstudios.game-objects-factory/include/impl.hpp>
+#include <bao143.game-objects-factory/include/main.hpp>
+#include <bao143.game-objects-factory/include/impl.hpp>
 
 // DIALOGUE TRIGGER EXTENSIONS
 
