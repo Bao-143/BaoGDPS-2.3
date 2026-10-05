@@ -384,7 +384,7 @@ inline void SetupObjects() {
 
 	
 	GameObjectsFactory::registerGameObject(
-        GameObjectsFactory::createDropPadConfig(
+        GameObjectsFactory::createPadConfig(
             UNIQ_ID("DropPad"),
             "DropPad.png",
             [](EnhancedGameObject* object, PlayerObject* plr) {
