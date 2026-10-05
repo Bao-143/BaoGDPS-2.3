@@ -9,34 +9,12 @@
 	},
 	"id": "bao143.baogdps2p3",
 	"name": "BaoGDPS 2.3",
-	"version": "v2.9.0",
-	"developers": [ "lil2kki", "Arrhythmiagamer23", "Bao143" ],
+	"version": "v1.0",
+	"developers": [ "Bao143" ,"lil2kki", "Arrhythmiagamer23" ],
 	"description": "https://baogdps.5v.pl",
 	"links": {
 		"source": "https://github.com/Bao-143/BaoGDPS-2.3",
 		"community": "https://discord.com/invite/ryqQRtACpG"
-	},
-	"dependencies": {
-		"geode.node-ids": {
-			"version": ">=v1.23.3",
-			"required": false
-		},
-		"prevter.imageplus": {
-			"version": ">=v1.0.3",
-			"required": false
-		},
-		"uproxide.happy_textures": {
-			"version": ">=v2.1.14",
-			"required": false
-		},
-		"iandyhd3.infinite_inputs": {
-			"version": ">=v1.0.0",
-			"required": false
-		},
-		"cvolton.misc_bugfixes": {
-			"version": ">=v1.0.0",
-			"required": false
-		}
 	},
 	"resources": {
 		"files": [
