@@ -73,14 +73,11 @@ jobs:
       - name: "Latest Release"
         uses: ncipollo/release-action@v1
         with:
-          name: "Latest Release"
-          body: |
-           Release of success build for latest commit on `${{ github.head_ref || github.ref_name }}`.
-
-           The build workflow run goes in [#${{ github.run_id }}](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})
-
-          tag: "releaseeee"
+          name: "1.0: First stable update"
+          body: 
+           Yay, finally
+          tag: "1.0"
           prerelease: false
-          allowUpdates: true
+          allowUpdates: false
           artifactErrorsFailBuild: true
           artifacts: "${{steps.build.outputs.build-output}}/*"
