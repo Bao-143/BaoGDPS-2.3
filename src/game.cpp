@@ -382,22 +382,6 @@ inline void SetupObjects() {
 		)
     );
 
-	
-	GameObjectsFactory::registerGameObject(
-        GameObjectsFactory::createPadConfig(
-            UNIQ_ID("DropPad"),
-            "DropPad.png",
-            [](EnhancedGameObject* object, PlayerObject* plr) {
-				plr->flipGravity(!plr->m_isUpsideDown, true); log::info("activated by player, {}, {}", object, plr);
-                plr->pushDown(); log::info("activated by player, {}, {}", object, plr);
-            }
-        )->customSetup(
-			[](GameObject* a) {
-				if (a) a->m_addToNodeContainer = true;
-			}
-		)
-    );
-
 	GameObjectsFactory::registerGameObject(
         GameObjectsFactory::createGravityPortalConfig(
             UNIQ_ID("QuintupleSpeed"),
