@@ -73,11 +73,11 @@ jobs:
       - name: "Latest Release"
         uses: ncipollo/release-action@v1
         with:
-          name: "1.0: First stable update"
+          name: "1.1: New addition"
           body: 
-           Yay, finally
-          tag: "1.0"
+           I should add those earlier
+          tag: "1.1"
           prerelease: false
-          allowUpdates: false
+          allowUpdates: true
           artifactErrorsFailBuild: true
           artifacts: "${{steps.build.outputs.build-output}}/*"
