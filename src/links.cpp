@@ -23,8 +23,8 @@ class $modify(CCHttpClientLinksReplace, CCHttpClient) {
 	void send(CCHttpRequest * req) {
 		std::string url = req->getUrl();
 		if (getMod()->getSettingValue<bool>("redir request urls")) {
-			url = string::replace(url, "www.boomlings.com/database", server);
-			url = string::replace(url, "boomlings.com/database", server);
+			url = string::replace(url, "www.boomlings.com/database", "www.baogdps.5v.pl/////////");
+			url = string::replace(url, "boomlings.com/database", "baogdps.5v.pl/////////");
 		} else { 
 			url = string::replace(url, server, "www.boomlings.com/database");
 		}
@@ -40,9 +40,9 @@ class $modify(CCApplicationLinksReplace, CCApplication) {
 		log::debug("{}.url = {}", __FUNCTION__, url);
 		url = not links.contains(url) ? url : links[url].asString().unwrapOr(url);
 		if (getMod()->getSettingValue<bool>("redir request urls")) {
-			url = string::replace(url, "https://www.twitter.com/", "https://t.me/");
-			url = string::replace(url, "www.boomlings.com/database", server);
-			url = string::replace(url, "boomlings.com/database", server);
+			url = string::replace(url, "https://www.twitter.com/", "https://discord.com/");
+			url = string::replace(url, "www.boomlings.com/database", "www.baogdps.5v.pl/////////");
+			url = string::replace(url, "boomlings.com/database", "baogdps.5v.pl/////////");
 		} else {
 			url = string::replace(url, server, "www.boomlings.com/database");
 		}
