@@ -238,6 +238,90 @@ inline void SetupObjects() {
 	);
 	svcondtrigger->registerMe();
 
+		GameObjectsFactory::createTriggerConfig(UNIQ_ID("plr-tw-rot"), "plr-tw-rot.png")
+		->refID(1935)->insertIndex((12 * 5) + 5)->triggerObject(
+			[](EffectGameObject* ob, GJBaseGameLayer* g, int, gd::vector<int> const*) {
+				auto id = ob->m_objectID;
+				ob->m_objectID = 1935;
+				auto sVal = string::split(ob->getSaveString(g), ",120,")[1];
+				ob->m_objectID = id;
+				auto a = utils::numFromString<float>(sVal).unwrapOr(1.0f);
+				for (auto p : { g->m_player1, g->m_player2 }) {
+					if (p) p->m_customScaleX = a;
+				}
+			}
+		)->saveString(
+			[](std::string str, GameObject* ob, GJBaseGameLayer* game) {
+				auto id = ob->m_objectID;
+				ob->m_objectID = 1935;
+				str = ob->getSaveString(game);
+				ob->m_objectID = id;
+				log::debug("{}", str);
+				str = string::replace(str, "1,1935", fmt::format("1,{}", id)).c_str();
+				//120
+				return str;
+			}
+		)->registerMe();
+
+	GameObjectsFactory::createTriggerConfig(
+		UNIQ_ID("openURL"), "openURL.png",
+		[](EffectGameObject* trigger, GJBaseGameLayer* game, int p1, gd::vector<int> const* p2)
+		{
+			auto xd = MDTextArea::create(fmt::format(
+				"[{0}]({0})", trigger->m_particleString.c_str()
+			), { 122,122 });
+			auto item = findFirstChildRecursive<CCMenuItem>(
+				xd, [](void*) { return true; }
+			);
+			if (item) item->activate();
+		},
+		[](EditTriggersPopup* popup, EffectGameObject* trigger, CCArray* objects)
+		{
+			if (auto title = popup->getChildByType<CCLabelBMFont*>(0)) {
+				title->setString("Open URL");
+				title->setAnchorPoint(CCPointMake(0.5f, 0.3f));
+			}
+			if (auto inf = popup->m_buttonMenu->getChildByType<InfoAlertButton*>(0)) {
+				//inf->setVisible(false);
+				inf->m_description = ""
+					"Links have some special protocols!" "\n"
+					"Use <cg>user:{accountID}</c> to link to a GD account;" "\n"
+					"<cg>level:{id}</c> to link to a GD level and" "\n"
+					"<cg>mod:{id}</c> to link to another Geode mod." "\n"
+					"Or a external link from the internet." "\n"
+					"But, the one rule you should follow for safety for everyone," "\n"
+					"<cr>Don't put links that contained NSFW or Viruses.</c>";
+			}
+
+			auto input = TextInput::create(312.f, "", "chatFont.fnt");
+			input->setFilter(" !\"#$ % &'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~");
+			input->getInputNode()->m_allowedChars = " !\"#$ % &'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~";
+			input->setString(trigger->m_particleString.c_str());
+			input->setPositionY(55.000f);
+			input->setCallback(
+				[trigger = Ref(trigger)](const std::string& p0) {
+					trigger->m_particleString = p0.c_str();
+				}
+			);
+			input->getBGSprite()->setContentHeight(40.000f);
+			input->getBGSprite()->setAnchorPoint({ 0.5f, 0.550f });
+			popup->m_buttonMenu->addChild(input);
+		}
+	)->saveString(
+		[](std::string str, GameObject* object, GJBaseGameLayer* level)
+		{
+			str += ",228,";
+			str += ZipUtils::base64URLEncode(object->m_particleString).c_str();
+			return str;
+		}
+	)->objectFromVector(
+		[](GameObject* object, gd::vector<gd::string>& p0, gd::vector<void*>&, void*, bool)
+		{
+			object->m_particleString = ZipUtils::base64URLDecode(p0[228]).c_str();
+			return object;
+		}
+	)->customSetup([](auto a) { a->m_addToNodeContainer = true; })->registerMe();
+
 	GameObjectsFactory::createObjectConfig(UNIQ_ID("player1-model"), "player1-model.png")
 		->tab(6)->resetObject(
 			[](GameObject* a) {
@@ -449,6 +533,49 @@ GameObjectsFactory::registerGameObject(
             [](EnhancedGameObject* object, PlayerObject* plr) {
 				plr->updateJump(5); log::info("activated by player, {}, {}", object, plr);
 				plr->updateJump(5); log::info("activated by player, {}, {}", object, plr);
+            }
+        )->customSetup(
+			[](GameObject* a) {
+				if (a) a->m_addToNodeContainer = true;
+			}
+		)
+    );
+
+		GameObjectsFactory::registerGameObject(
+        GameObjectsFactory::createDashRingConfig(
+            UNIQ_ID("ReverseDashRing"),
+            "ReverseDashRing.png",
+            [](EnhancedGameObject* object, PlayerObject* plr) {
+                plr->doReversePlayer(true); log::info("activated by player, {}, {}", object, plr);
+            }
+        )->customSetup(
+			[](GameObject* a) {
+				if (a) a->m_addToNodeContainer = true;
+			}
+		)
+    );
+
+	GameObjectsFactory::registerGameObject(
+        GameObjectsFactory::createDashRingConfig(
+            UNIQ_ID("GravReverseDashRing"),
+            "GravReverseDashRing.png",
+            [](EnhancedGameObject* object, PlayerObject* plr) {
+                plr->doReversePlayer(true); log::info("activated by player, {}, {}", object, plr);
+				plr->flipGravity(!plr->m_isUpsideDown, true); log::info("activated by player, {}, {}", object, plr);
+            }
+        )->customSetup(
+			[](GameObject* a) {
+				if (a) a->m_addToNodeContainer = true;
+			}
+		)
+    );
+
+	GameObjectsFactory::registerGameObject(
+        GameObjectsFactory::createDashRingConfig(
+            UNIQ_ID("SpiderDashRing"),
+            "SpiderDashRing.png",
+            [](EnhancedGameObject* object, PlayerObject* plr) {
+                plr->spiderTestJump(true); log::info("activated by player, {}, {}", object, plr);
             }
         )->customSetup(
 			[](GameObject* a) {
